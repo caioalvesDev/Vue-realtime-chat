@@ -1,28 +1,32 @@
 <template>
-  <div class="container-sm mt-20">
-    <div class="mx-5">
-      <Message
-        v-for="{ id, text, userPhotoURL, userName, userId } in messages"
-        :key="id"
-        :name="userName"
-        :photo-url="userPhotoURL"
-        :sender="userId === user?.uid"
-      >
-        {{ text }}
-      </Message>
+  <div class="w-full flex justify-center">
+    <div class="container-sm mt-20">
+      <div class="mx-5">
+        <Message
+          v-for="{ id, text, userPhotoURL, userName, userId } in messages"
+          :key="id"
+          :name="userName"
+          :photo-url="userPhotoURL"
+          :sender="userId === user?.uid"
+        >
+          <p class="break-words">{{ text }}</p>
+        </Message>
+      </div>
     </div>
   </div>
 
   <div ref="bottom" class="mt-20" />
 
   <div class="bottom">
-    <div class="container-sm">
-      <form v-if="isLogin" @submit.prevent="send">
-        <input v-model="message" placeholder="Mensagem" required />
-        <button type="submit">
-          <SendIcon />
-        </button>
-      </form>
+    <div class="w-full flex justify-center">
+      <div class="container-sm">
+        <form v-if="isLogin" @submit.prevent="send">
+          <input v-model="message" placeholder="Mensagem" required />
+          <button type="submit">
+            <SendIcon />
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </template>
